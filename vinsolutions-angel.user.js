@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         VinSolutions v4.0 - Angel (botones+ Estilos + Resaltado Dual)
+// @name         VinSolutions v4.1 - Angel (botones+ Estilos + Resaltado Dual)
 // @namespace    http://tampermonkey.net/
 // @version      v4.1
 // @description  Abre popup 'Log Call', añade iconos de copiado (con estilo mejorado) y resalta palabras clave Y nombres de usuario.
