@@ -121,7 +121,7 @@
             icon.addEventListener('click', (e) => {
                 e.stopPropagation(); e.preventDefault();
                 GM_setClipboard(textToCopy);
-                e.currentTarget.textContent = '✅';
+                e.currentTarget.textContent = '✔';
                 setTimeout(() => { if (document.body.contains(e.currentTarget)) e.currentTarget.textContent = '📋'; }, 1500);
             });
             targetElement.appendChild(icon);
