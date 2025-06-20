@@ -116,7 +116,7 @@
             if (targetElement.dataset.copyIconAdded === 'true') return;
             const icon = document.createElement('span');
             icon.className = 'copy-icon-vs-unified';
-            icon.textContent = '📋';
+            icon.textContent = '⧉';
             icon.title = `Copiar: ${textToCopy}`;
             icon.addEventListener('click', (e) => {
                 e.stopPropagation(); e.preventDefault();
