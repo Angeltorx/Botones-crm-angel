@@ -13,50 +13,22 @@
 // @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js
 // ==/UserScript==
 
-(function() {
+(function () {
     'use strict';
-    const SCRIPT_VERSION = '0.5.3'; // <-- ¡ACTUALIZA ESTO cada vez!
+
+    const SCRIPT_VERSION = '0.5.3'; // ← ¡Actualiza este número con cada versión!
     const SCRIPT_NAME = 'Drive Centric';
 
-(function notifyOnUpdate() {
-    const storageKey = `${SCRIPT_NAME}-LastVersion`;
-    const lastVersion = localStorage.getItem(storageKey);
-
-    if (lastVersion !== SCRIPT_VERSION) {
-        if (lastVersion !== null) {
-            showToast(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}<br>
-            📌 Se mejoró el botón de copiado con ícono SVG.`);
+    (function notifyOnUpdate() {
+        const storageKey = `${SCRIPT_NAME}-LastVersion`;
+        const lastVersion = localStorage.getItem(storageKey);
+        if (lastVersion !== SCRIPT_VERSION) {
+            if (lastVersion !== null) {
+                alert(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}.\n\n📌 Cambios recientes:\n- Se mejoró el botón de copiado con ícono SVG\n- Corrección de visibilidad del SVG\n- Revisión automática ajustada`);
+            }
+            localStorage.setItem(storageKey, SCRIPT_VERSION);
         }
-        localStorage.setItem(storageKey, SCRIPT_VERSION);
-    }
-})();
-
-function showToast(message) {
-    const toast = document.createElement('div');
-    toast.innerHTML = message;
-    toast.style.cssText = `
-        position: fixed;
-        top: 20px;
-        right: 20px;
-        background: #222;
-        color: #fff;
-        padding: 12px 16px;
-        font-size: 14px;
-        border-radius: 6px;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
-        z-index: 9999;
-        opacity: 0;
-        transition: opacity 0.4s ease-in-out;
-    `;
-    document.body.appendChild(toast);
-    requestAnimationFrame(() => {
-        toast.style.opacity = '1';
-    });
-    setTimeout(() => {
-        toast.style.opacity = '0';
-        setTimeout(() => toast.remove(), 400);
-    }, 4000);
-}
+    })();
 
     console.log("SCRIPT UNIVERSAL v5 PARA DRIVE CENTRIC INICIADO");
 
