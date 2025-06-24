@@ -12,8 +12,8 @@
 // @grant        GM_addStyle
 // @grant        GM_setClipboard
 // @run-at       document-idle
-// @updateURL    https://github.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js
-// @downloadURL  https://github.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js
+// @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js
+// @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js
 // ==/UserScript==
 
 (function () {
