@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Drive Centric - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      0.5.1
+// @version      0.5.2
 // @description  Añade botones de copia, resalta palabras clave (amarillo) y nombres de usuario (verde).
 // @author       Angel Torres
 // @match        https://app.drivecentric.com/*
@@ -15,6 +15,19 @@
 
 (function() {
     'use strict';
+    const SCRIPT_VERSION = '0.5.2'; // <-- ¡ACTUALIZA ESTO cada vez!
+    const SCRIPT_NAME = 'Drive Centric';
+
+(function notifyOnUpdate() {
+    const storageKey = `${SCRIPT_NAME}-LastVersion`;
+    const lastVersion = localStorage.getItem(storageKey);
+    if (lastVersion !== SCRIPT_VERSION) {
+    if (lastVersion !== null) {
+    alert(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}.\n\n📌 Cambios recientes:\n- Se mejoró el botón de copiado con ícono SVG\n- Corrección de visibilidad del SVG\n- Revisión automática ajustada`);
+    }
+    localStorage.setItem(storageKey, SCRIPT_VERSION);
+}
+})();
     console.log("SCRIPT UNIVERSAL v5 PARA DRIVE CENTRIC INICIADO");
 
     // =========================================================================
