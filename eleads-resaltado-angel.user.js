@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ELead V03 - Angel (resaltado + nombres actualizados)
+// @name         ELead V03 - Angel - Github
 // @namespace    http://tampermonkey.net/
 // @version      4.0.1
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.

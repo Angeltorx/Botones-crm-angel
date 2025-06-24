@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         Drive Centric v05 -Angel- (Botones + resaltado Dual)
+// @name         Drive Centric v05 - Github
 // @namespace    http://tampermonkey.net/
 // @version      V05
 // @description  Añade botones de copia, resalta palabras clave (amarillo) y nombres de usuario (verde).
