@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Drive Centric - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      0.5.3
+// @version      0.5.4
 // @description  Añade botones de copia, resalta palabras clave (amarillo) y nombres de usuario (verde).
 // @author       Angel Torres
 // @match        https://app.drivecentric.com/*
@@ -16,19 +16,48 @@
 (function () {
     'use strict';
 
-    const SCRIPT_VERSION = '0.5.3'; // ← ¡Actualiza este número con cada versión!
-    const SCRIPT_NAME = 'Drive Centric';
+    const SCRIPT_VERSION = '0.5.4'; // <-- ¡Actualiza cada vez!
+const SCRIPT_NAME = 'Drive Centric';
 
-    (function notifyOnUpdate() {
-        const storageKey = `${SCRIPT_NAME}-LastVersion`;
-        const lastVersion = localStorage.getItem(storageKey);
-        if (lastVersion !== SCRIPT_VERSION) {
-            if (lastVersion !== null) {
-                alert(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}.\n\n📌 Cambios recientes:\n- Se mejoró el botón de copiado con ícono SVG\n- Corrección de visibilidad del SVG\n- Revisión automática ajustada`);
-            }
-            localStorage.setItem(storageKey, SCRIPT_VERSION);
+(function notifyOnUpdate() {
+    const storageKey = `${SCRIPT_NAME}-LastVersion`;
+    const lastVersion = localStorage.getItem(storageKey);
+
+    if (lastVersion !== SCRIPT_VERSION) {
+        if (lastVersion !== null) {
+            showToast(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}<br>
+            📌 Se mejoró el botón de copiado con ícono SVG.`);
         }
-    })();
+        localStorage.setItem(storageKey, SCRIPT_VERSION);
+    }
+})();
+
+function showToast(message) {
+    const toast = document.createElement('div');
+    toast.innerHTML = message;
+    toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: #222;
+        color: #fff;
+        padding: 12px 16px;
+        font-size: 14px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+        z-index: 9999;
+        opacity: 0;
+        transition: opacity 0.4s ease-in-out;
+    `;
+    document.body.appendChild(toast);
+    requestAnimationFrame(() => {
+        toast.style.opacity = '1';
+    });
+    setTimeout(() => {
+        toast.style.opacity = '0';
+        setTimeout(() => toast.remove(), 400);
+    }, 4000);
+}
 
     console.log("SCRIPT UNIVERSAL v5 PARA DRIVE CENTRIC INICIADO");
 
