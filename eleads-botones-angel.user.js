@@ -74,7 +74,7 @@
 
     const btn = document.createElement("span");
     btn.className = copyButtonClass;
-    btn.textContent = buttonIcon;
+    btn.innerHTML = buttonIcon;
     btn.title = `Copiar ${label}: ${textToCopy}`;
     btn.style.fontSize = "inherit";
     btn.addEventListener("click", (e) => {
@@ -82,10 +82,10 @@
       e.preventDefault();
       try {
         GM_setClipboard(textToCopy, "text");
-        btn.textContent = successIcon;
+        btn.innerHTML = successIcon;
         btn.classList.add("copied");
         setTimeout(() => {
-          btn.textContent = buttonIcon;
+          btn.innerHTML = buttonIcon;
           btn.classList.remove("copied");
         }, 1500);
       } catch (err) {
