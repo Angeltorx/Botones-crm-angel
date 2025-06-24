@@ -97,7 +97,7 @@
         // --- Lógica de Resaltado ---
         const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade'];
         const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
-        const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY'];
+        const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
         nombresClave.sort((a, b) => b.length - a.length);
         const regexNombres = new RegExp(`(${nombresClave.join('|')})`, 'gi');
 
