@@ -17,6 +17,8 @@
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @run-at       document-idle
+// @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/combine/driveCentric-Vinsolutions-angel.user.js
+// @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/combine/driveCentric-Vinsolutions-angel.user.js
 // ==/UserScript==
 
 (function() {
