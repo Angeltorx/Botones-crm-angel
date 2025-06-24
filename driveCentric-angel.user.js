@@ -26,7 +26,7 @@
     alert(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}.\n\n📌 Cambios recientes:\n- Se mejoró el botón de copiado con ícono SVG\n- Corrección de visibilidad del SVG\n- Revisión automática ajustada`);
     }
     localStorage.setItem(storageKey, SCRIPT_VERSION);
-}
+    }
 })();
     console.log("SCRIPT UNIVERSAL v5 PARA DRIVE CENTRIC INICIADO");
 
