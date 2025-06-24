@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         VinSolutions v4.2 - Angel (botones+ Estilos + Resaltado Dual)
+// @name         VinSolutions v4.0 - Angel (botones+ Estilos + Resaltado Dual)
 // @namespace    http://tampermonkey.net/
-// @version      v4.2
+// @version      4.0.3
 // @description  Abre popup 'Log Call', añade iconos de copiado (con estilo mejorado) y resalta palabras clave Y nombres de usuario.
 // @author       Angel Torres
 // @match        *://*.vinsolutions.com/CarDashboard/Pages/CRM/SoldLog.aspx*
@@ -15,9 +15,10 @@
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @run-at       document-idle
-// @updateURL    https://github.com/Angeltorx/Botones-crm-angel/blob/main/vinsolutions-angel.user.js
-// @downloadURL  https://github.com/Angeltorx/Botones-crm-angel/blob/main/vinsolutions-angel.user.js
+// @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/vinsolutions-angel.user.js
+// @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/vinsolutions-angel.user.js
 // ==/UserScript==
+
 
 (function () {
   "use strict";
