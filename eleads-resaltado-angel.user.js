@@ -1,12 +1,12 @@
 // ==UserScript==
-// @name         ELead V03 - Resaltado - Github
+// @name         ELead V03 -Resaltado -Github
 // @namespace    http://tampermonkey.net/
-// @version      4.0.1
+// @version      V03
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
 // @author       Angel Torres
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
 // @match        https://*.forddirectcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
-// @icon         https://cdn-icons-png.flaticon.com/512/1828/1828911.png
+// @icon         https://www.google.com/s2/favicons?sz=64&domain=eleadcrm.com
 // @grant        GM_addStyle
 // @run-at       document-idle
 // @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js
@@ -14,54 +14,18 @@
 // ==/UserScript==
 
 (function () {
-  "use strict";
-  console.log("SCRIPT DE RESALTADO ACTIVADO");
+    'use strict';
+    console.log("SCRIPT DE RESALTADO ACTIVADO");
 
-  const palabrasClave = [
-    "option",
-    "options",
-    "xchange",
-    "exchange",
-    "pitch",
-    "program",
-    "offer",
-    "showroom",
-    "interested",
-    "interest",
-    "trade",
-  ];
-  const nombresVerdes = [
-    "JAY",
-    "KIARA",
-    "CHLOE B",
-    "BECCA",
-    "JAZ",
-    "JJ",
-    "CHRIS",
-    "NEA",
-    "DANI",
-    "MARK A",
-    "ANIKA",
-    "JESS",
-    "CHLOE",
-    "JUAN",
-    "JEFF",
-    "DARIA",
-    "GABBY",
-    "Neariah",
-    "Chrissy",
-    "MARIAH",
-    "GAB",
-  ];
+    const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade'];
+    const nombresVerdes = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
 
-  const regexPalabras = new RegExp(`\b(${palabrasClave.join("|")})\b`, "gi");
-  const regexVerdes = new RegExp(
-    `\b(${nombresVerdes.map((n) => n.replace(".", ".")).join("|")})\b`,
-    "gi"
-  );
+    const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
+    const regexVerdes = new RegExp(`\\b(${nombresVerdes.map(n => n.replace('.', '\\.')).join('|')})\\b`, 'gi');
 
-  try {
-    GM_addStyle(`
+    // Estilos para resaltado
+    try {
+        GM_addStyle(`
             .resaltado-clave {
                 background-color: yellow;
                 color: red;
@@ -81,60 +45,57 @@
                 border: 1px solid #e0a800 !important;
             }
         `);
-  } catch (e) {
-    console.error("SCRIPT ERROR: Fallo GM_addStyle", e);
-  }
-
-  function resaltarPalabrasEnComentarios() {
-    const comentarios = document.querySelectorAll("td.TaskComments > div");
-
-    comentarios.forEach((div) => {
-      if (!div.dataset.resaltado) {
-        let nuevoHTML = div.innerHTML;
-
-        nuevoHTML = nuevoHTML.replace(
-          regexPalabras,
-          (match) => `<span class="resaltado-clave">${match}</span>`
-        );
-
-        nuevoHTML = nuevoHTML.replace(
-          regexVerdes,
-          (match) => `<span class="resaltado-verde">${match}</span>`
-        );
-
-        if (nuevoHTML !== div.innerHTML) {
-          div.innerHTML = nuevoHTML;
-        }
-
-        div.dataset.resaltado = "true";
-      }
-    });
-  }
-
-  function iniciarObservador() {
-    const tablaHistorial = document.getElementById("HistoryTable");
-    if (!tablaHistorial) {
-      console.warn(
-        "SCRIPT: No se encontró #HistoryTable. Se intentará de nuevo..."
-      );
-      setTimeout(iniciarObservador, 1000);
-      return;
+    } catch (e) {
+        console.error("SCRIPT ERROR: Fallo GM_addStyle", e);
     }
 
-    const observer = new MutationObserver(() => {
-      clearTimeout(window.resaltadoDebounce);
-      window.resaltadoDebounce = setTimeout(() => {
-        resaltarPalabrasEnComentarios();
-      }, 300);
-    });
+    function resaltarPalabrasEnComentarios() {
+        const comentarios = document.querySelectorAll("td.TaskComments > div");
 
-    observer.observe(tablaHistorial, { childList: true, subtree: true });
-    setTimeout(() => {
-      resaltarPalabrasEnComentarios();
-    }, 500);
-  }
+        comentarios.forEach(div => {
+            if (!div.dataset.resaltado) {
+                let nuevoHTML = div.innerHTML;
 
-  if (window.location.href.includes("history.aspx")) {
-    iniciarObservador();
-  }
+                nuevoHTML = nuevoHTML.replace(regexPalabras, match =>
+                    `<span class="resaltado-clave">${match}</span>`
+                );
+
+                nuevoHTML = nuevoHTML.replace(regexVerdes, match =>
+                    `<span class="resaltado-verde">${match}</span>`
+                );
+
+                if (nuevoHTML !== div.innerHTML) {
+                    div.innerHTML = nuevoHTML;
+                }
+
+                div.dataset.resaltado = "true"; // Para evitar aplicar varias veces
+            }
+        });
+    }
+
+
+    function iniciarObservador() {
+        const tablaHistorial = document.getElementById("HistoryTable");
+        if (!tablaHistorial) {
+            console.warn("SCRIPT: No se encontró #HistoryTable. Se intentará de nuevo...");
+            setTimeout(iniciarObservador, 1000);
+            return;
+        }
+
+        const observer = new MutationObserver(() => {
+            clearTimeout(window.resaltadoDebounce);
+            window.resaltadoDebounce = setTimeout(() => {
+                resaltarPalabrasEnComentarios();
+            }, 300);
+        });
+
+        observer.observe(tablaHistorial, { childList: true, subtree: true });
+        setTimeout(() => {
+            resaltarPalabrasEnComentarios();
+        }, 500);
+    }
+
+    if (window.location.href.includes('history.aspx')) {
+        iniciarObservador();
+    }
 })();
