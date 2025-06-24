@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ELead V19 -Butons - Github
+// @name         ELead V19 -Buttons - Github
 // @namespace    http://tampermonkey.net/
 // @version      V19
 // @description  Combina botones de copiado (v11) con expansión del historial (v17).
