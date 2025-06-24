@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Drive Centric - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      0.5.4
+// @version      0.5.3
 // @description  Añade botones de copia, resalta palabras clave (amarillo) y nombres de usuario (verde).
 // @author       Angel Torres
 // @match        https://app.drivecentric.com/*
@@ -16,7 +16,7 @@
 (function () {
     'use strict';
 
-    const SCRIPT_VERSION = '0.5.4'; // <-- ¡Actualiza cada vez!
+    const SCRIPT_VERSION = '0.5.3'; // <-- ¡Actualiza cada vez!
 const SCRIPT_NAME = 'Drive Centric';
 
 (function notifyOnUpdate() {
