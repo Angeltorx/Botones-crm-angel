@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         Drive Centric v05 - Github
 // @namespace    http://tampermonkey.net/
-// @version      V05.1
+// @version      0.5.1
 // @description  Añade botones de copia, resalta palabras clave (amarillo) y nombres de usuario (verde).
 // @author       Angel Torres
 // @match        https://app.drivecentric.com/*
@@ -67,19 +67,19 @@
 
         const btn = document.createElement('span');
         btn.className = copyButtonClass;
-        btn.textContent = buttonIcon;
+        btn.innerHTML = buttonIcon;
         btn.title = `Copiar ${label}: ${textToCopy}`;
 
         btn.addEventListener('click', (e) => {
             e.stopPropagation(); e.preventDefault();
             navigator.clipboard.writeText(textToCopy).then(() => {
-                btn.textContent = successIcon;
-                setTimeout(() => { btn.textContent = buttonIcon; }, 1500);
+                btn.innerHTML = successIcon;
+                setTimeout(() => { btn.innerHTML = buttonIcon; }, 1500);
             }).catch(err => {
                 try {
                     GM_setClipboard(textToCopy, 'text');
-                    btn.textContent = successIcon;
-                    setTimeout(() => { btn.textContent = buttonIcon; }, 1500);
+                    btn.innerHTML = successIcon;
+                    setTimeout(() => { btn.innerHTML = buttonIcon; }, 1500);
                 } catch (gm_err) {
                     console.error('Fallo al copiar con API Nativa y con GM_setClipboard.', gm_err);
                     alert(`No se pudo copiar al portapapeles.`);
