@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ELead V02 -Angel  automatizacion github
+// @name         ELead V03 -Angel  automatizacion github
 // @namespace    http://tampermonkey.net/
 // @version      V03
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
