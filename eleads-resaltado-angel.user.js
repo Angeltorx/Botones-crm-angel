@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         ELead V03 -Resaltado -Github
+// @name         ELead -Resaltado -Github
 // @namespace    http://tampermonkey.net/
-// @version      V03
+// @version      1.0
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
 // @author       Angel Torres
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*

@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         ELead V19 -Buttons - Github
+// @name         ELead -Buttons - Github
 // @namespace    http://tampermonkey.net/
-// @version      V19
+// @version      1.0
 // @description  Combina botones de copiado (v11) con expansión del historial (v17).
 // @author       Jesus Is lord
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/OpptyDetails.aspx*
