@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ELead -Resaltado -Github
+// @name         ELead -Resaltado -Github Version
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
