@@ -22,7 +22,7 @@
 (function() {
     'use strict';
 
-    const SCRIPT_PREFIX = "Tampermonkey (VinSolutions v4.0)";
+    const SCRIPT_PREFIX = "VinSolutions Script";
     const currentPath = window.location.pathname;
     console.log(`${SCRIPT_PREFIX}: Script INICIANDO en -> ${window.location.href}`);
 
