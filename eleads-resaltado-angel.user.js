@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         ELead V02 -Angel (Keywords + Resaltado Dual)
+// @name         ELead V02 -Angel  automatizacion github
 // @namespace    http://tampermonkey.net/
-// @version      V02
+// @version      V03
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
 // @author       Angel Torres
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
