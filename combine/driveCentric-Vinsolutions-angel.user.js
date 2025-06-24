@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name         Potenciador de CRMs v11 (VinSolutions & DriveCentric)
+// @name         VinSolutions & DriveCentric
 // @namespace    http://tampermonkey.net/
-// @version      11.0
+// @version      1.0
 // @description  Unificado: Popups, Copiado (con estilo mejorado), y Resaltado de palabras clave y nombres.
 // @author       Angel Torres & Gemini
 // @match        *://*.vinsolutions.com/CarDashboard/Pages/CRM/SoldLog.aspx*
@@ -24,7 +24,7 @@
 (function() {
     'use strict';
 
-    const SCRIPT_PREFIX = "Tampermonkey (Master Script v11)";
+    const SCRIPT_PREFIX = "Master Script - Github Version";
     const hostname = window.location.hostname;
     console.log(`${SCRIPT_PREFIX}: Script INICIANDO en -> ${hostname}`);
 
