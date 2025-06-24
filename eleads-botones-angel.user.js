@@ -97,6 +97,12 @@
       }
     });
     try {
+      if (targetElement.nodeType === Node.TEXT_NODE) {
+        const span = document.createElement("span");
+        span.textContent = targetElement.textContent;
+        targetElement.parentNode.replaceChild(span, targetElement);
+        targetElement = span;
+      }
       targetElement.parentNode.insertBefore(btn, targetElement.nextSibling);
       markerElement.dataset[copyButtonMarker] = "true";
       return true;
