@@ -9,8 +9,8 @@
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=eleadcrm.com
 // @grant        GM_addStyle
 // @run-at       document-idle
-// @updateURL    https://github.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js
-// @downloadURL  https://github.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js
+// @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js
+// @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js
 // ==/UserScript==
 
 (function () {
