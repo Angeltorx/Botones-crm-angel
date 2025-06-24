@@ -9,9 +9,12 @@
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
 // @match        https://*.forddirectcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=eleadcrm.com
+// @icon         https://cdn-icons-png.flaticon.com/512/3596/3596271.png
 // @grant        GM_addStyle
 // @grant        GM_setClipboard
 // @run-at       document-idle
+// @updateURL    https://github.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js
+// @downloadURL  https://github.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js
 // ==/UserScript==
 
 (function() {

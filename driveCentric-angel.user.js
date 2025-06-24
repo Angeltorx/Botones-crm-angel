@@ -9,8 +9,8 @@
 // @grant        GM_addStyle
 // @grant        GM_setClipboard
 // @run-at       document-idle
-// @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/
-// @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/
+// @updateURL    https://github.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js
+// @downloadURL  https://github.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js
 // ==/UserScript==
 
 (function() {
