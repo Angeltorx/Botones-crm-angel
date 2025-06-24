@@ -9,8 +9,8 @@
 // @grant        GM_addStyle
 // @grant        GM_setClipboard
 // @run-at       document-idle
-// @updateURL    https://github.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js
-// @downloadURL  https://github.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js
+// @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js
+// @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js
 // ==/UserScript==
 
 (function() {
@@ -26,7 +26,7 @@
     const copyButtonMarker = 'hasCopyButton';
 
     // --- Listado de Palabras Clave ---
-    const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade'];
+    const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade','S2S'];
     const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
 
     // --- NUEVO: Listado de Nombres de Usuario ---
