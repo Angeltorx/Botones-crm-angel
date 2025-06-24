@@ -15,7 +15,7 @@
 
 (function() {
     'use strict';
-    console.log("SCRIPT UNIVERSAL v5 (Resaltado Dual) PARA DRIVE CENTRIC INICIADO");
+    console.log("SCRIPT UNIVERSAL v5 PARA DRIVE CENTRIC INICIADO");
 
     // =========================================================================
     // --- CONFIGURACIÓN Y ESTILOS ---
