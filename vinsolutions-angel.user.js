@@ -15,8 +15,8 @@
 // @grant        GM_setClipboard
 // @grant        GM_addStyle
 // @run-at       document-idle
-// @updateURL    https://github.com/Angeltorx/Vin-V04-Angel/blob/main/vinsolutions-angel.user.js
-// @downloadURL  https://github.com/Angeltorx/Vin-V04-Angel/blob/main/vinsolutions-angel.user.js
+// @updateURL    https://github.com/Angeltorx/Botones-crm-angel/blob/main/vinsolutions-angel.user.js
+// @downloadURL  https://github.com/Angeltorx/Botones-crm-angel/blob/main/vinsolutions-angel.user.js
 // ==/UserScript==
 
 (function () {
