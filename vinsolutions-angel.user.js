@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VinSolutions - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      4.0.3
+// @version      4.0.4
 // @description  Abre popup 'Log Call', añade iconos de copiado (con estilo mejorado) y resalta palabras clave Y nombres de usuario.
 // @author       Angel Torres
 // @match        *://*.vinsolutions.com/CarDashboard/Pages/CRM/SoldLog.aspx*
@@ -94,7 +94,7 @@
 
         const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade','S2S'];
         const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
-        const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
+        const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'KALY', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
         nombresClave.sort((a, b) => b.length - a.length);
         const regexNombres = new RegExp(`(${nombresClave.join('|')})`, 'gi');
 
