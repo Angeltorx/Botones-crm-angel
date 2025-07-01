@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VinSolutions & DriveCentric
 // @namespace    http://tampermonkey.net/
-// @version      1.0
+// @version      1.1
 // @description  Unificado: Popups, Copiado (con estilo mejorado), y Resaltado de palabras clave y nombres.
 // @author       Angel Torres & Gemini
 // @match        *://*.vinsolutions.com/CarDashboard/Pages/CRM/SoldLog.aspx*
@@ -90,7 +90,7 @@
             `);
             const palabrasClave = ['option', 'options', 'xchange', 'interest', 'trade'];
             const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
-            const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY'];
+            const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'KALY', 'GABBY'];
             nombresClave.sort((a, b) => b.length - a.length);
             const regexNombres = new RegExp(`(${nombresClave.join('|')})`, 'gi');
 
