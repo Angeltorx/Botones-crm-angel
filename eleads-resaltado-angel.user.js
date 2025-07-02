@@ -18,7 +18,7 @@
     console.log("SCRIPT DE RESALTADO ACTIVADO");
 
     const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade','S2S'];
-    const nombresVerdes = ['JAY', 'KIARA', 'CJ', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'KALY', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
+    const nombresVerdes = ['JAY', 'KIARA', 'CJ', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'JT', 'MARK A', 'KALY', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
 
     const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
     const regexVerdes = new RegExp(`\\b(${nombresVerdes.map(n => n.replace('.', '\\.')).join('|')})\\b`, 'gi');

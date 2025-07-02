@@ -79,7 +79,7 @@ function showToast(message) {
     const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
 
     // --- NUEVO: Listado de Nombres de Usuario ---
-    const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'CHRIS', 'NEA', 'DANI', 'KALY', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
+    const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'CHRIS', 'NEA', 'DANI', 'KALY', 'JT', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
     // Ordenar de más largo a más corto para que "CHLOE B" coincida antes que "CHLOE"
     nombresClave.sort((a, b) => b.length - a.length);
     const regexNombres = new RegExp(`(${nombresClave.join('|')})`, 'gi');
