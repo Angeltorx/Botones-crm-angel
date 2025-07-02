@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VinSolutions - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      4.2
+// @version      4.3
 // @description  Abre popup 'Log Call', añade iconos de copiado (con estilo mejorado) y resalta palabras clave Y nombres de usuario.
 // @author       Angel Torres
 // @match        *://*.vinsolutions.com/CarDashboard/Pages/CRM/SoldLog.aspx*
@@ -23,7 +23,7 @@
     'use strict';
 
     const SCRIPT_NAME = "VinSolutions - Github Version";
-    const SCRIPT_VERSION = "4.2"; //SIEMPRE CAMBIA ESTA VERSION
+    const SCRIPT_VERSION = typeof GM_info !== "undefined" ? GM_info.script.version : "unknown";
 
 // Mostrar notificación si se actualiza el script
 function notifyOnUpdate() {
