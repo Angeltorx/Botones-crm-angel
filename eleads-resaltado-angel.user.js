@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ELead -Resaltado -Github Version
 // @namespace    http://tampermonkey.net/
-// @version      1.3
+// @version      1.4
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
 // @author       Angel Torres
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
@@ -16,8 +16,9 @@
 (function () {
     'use strict';
 
-const SCRIPT_NAME = "ELead -Resaltado -Github Version";
-    const SCRIPT_VERSION = "1.3"; //SIEMPRE CAMBIA ESTA VERSION
+    const SCRIPT_NAME = "ELead -Resaltado -Github Version";
+    const SCRIPT_VERSION = typeof GM_info !== "undefined" ? GM_info.script.version : "unknown";
+
 
 // Mostrar notificación si se actualiza el script
 function notifyOnUpdate() {
