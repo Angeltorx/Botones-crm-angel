@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VinSolutions - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      4.1
+// @version      4.2
 // @description  Abre popup 'Log Call', añade iconos de copiado (con estilo mejorado) y resalta palabras clave Y nombres de usuario.
 // @author       Angel Torres
 // @match        *://*.vinsolutions.com/CarDashboard/Pages/CRM/SoldLog.aspx*
@@ -21,6 +21,48 @@
 
 (function() {
     'use strict';
+
+    const SCRIPT_NAME = "VinSolutions - Github Version";
+    const SCRIPT_VERSION = "4.2"; //SIEMPRE CAMBIA ESTA VERSION
+
+// Mostrar notificación si se actualiza el script
+function notifyOnUpdate() {
+    const storageKey = `${SCRIPT_NAME}-LastVersion`;
+    const lastVersion = localStorage.getItem(storageKey);
+
+    if (lastVersion !== SCRIPT_VERSION) {
+        if (lastVersion !== null) {
+            showToast(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}<br>
+            📌 Se mejoró el botón de copiado con ícono SVG.`);
+        }
+        localStorage.setItem(storageKey, SCRIPT_VERSION);
+    }
+}
+
+// Muestra un pequeño mensaje en la esquina
+function showToast(html) {
+    const toast = document.createElement('div');
+    toast.innerHTML = html;
+    Object.assign(toast.style, {
+        position: 'fixed',
+        bottom: '16px',
+        right: '16px',
+        background: '#323232',
+        color: '#fff',
+        padding: '12px 16px',
+        borderRadius: '8px',
+        zIndex: 9999,
+        fontSize: '14px',
+        maxWidth: '300px',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+        lineHeight: '1.4',
+    });
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
+}
+
+notifyOnUpdate(); // Ejecuta la detección de versión
+
 
     const SCRIPT_PREFIX = "VinSolutions Script";
     const currentPath = window.location.pathname;

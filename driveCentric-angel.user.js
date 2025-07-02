@@ -16,7 +16,7 @@
 (function () {
     'use strict';
 
-    const SCRIPT_VERSION = '0.5.4'; // <-- ¡Actualiza cada vez!
+    const SCRIPT_VERSION = '1.0'; // <-- ¡Actualiza cada vez!
     const SCRIPT_NAME = 'Drive Centric';
 
 (function notifyOnUpdate() {

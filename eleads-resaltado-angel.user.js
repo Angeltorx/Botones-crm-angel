@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ELead -Resaltado -Github Version
 // @namespace    http://tampermonkey.net/
-// @version      1.2
+// @version      1.3
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
 // @author       Angel Torres
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
@@ -15,6 +15,49 @@
 
 (function () {
     'use strict';
+
+const SCRIPT_NAME = "ELead -Resaltado -Github Version";
+    const SCRIPT_VERSION = "1.3"; //SIEMPRE CAMBIA ESTA VERSION
+
+// Mostrar notificación si se actualiza el script
+function notifyOnUpdate() {
+    const storageKey = `${SCRIPT_NAME}-LastVersion`;
+    const lastVersion = localStorage.getItem(storageKey);
+
+    if (lastVersion !== SCRIPT_VERSION) {
+        if (lastVersion !== null) {
+            showToast(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}<br>
+            📌 Se mejoró el botón de copiado con ícono SVG.`);
+        }
+        localStorage.setItem(storageKey, SCRIPT_VERSION);
+    }
+}
+
+// Muestra un pequeño mensaje en la esquina
+function showToast(html) {
+    const toast = document.createElement('div');
+    toast.innerHTML = html;
+    Object.assign(toast.style, {
+        position: 'fixed',
+        bottom: '16px',
+        right: '16px',
+        background: '#323232',
+        color: '#fff',
+        padding: '12px 16px',
+        borderRadius: '8px',
+        zIndex: 9999,
+        fontSize: '14px',
+        maxWidth: '300px',
+        boxShadow: '0 2px 6px rgba(0,0,0,0.3)',
+        lineHeight: '1.4',
+    });
+    document.body.appendChild(toast);
+    setTimeout(() => toast.remove(), 5000);
+}
+
+notifyOnUpdate(); // Ejecuta la detección de versión
+
+
     console.log("SCRIPT DE RESALTADO ACTIVADO");
 
     const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade','S2S'];
