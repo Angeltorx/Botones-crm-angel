@@ -90,7 +90,7 @@
             `);
             const palabrasClave = ['option', 'options', 'xchange', 'interest', 'trade'];
             const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
-            const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'KALY', 'GABBY'];
+            const nombresClave = ['JAY', 'KIARA', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'MARK A', 'DRI','ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'KALY', 'GABBY'];
             nombresClave.sort((a, b) => b.length - a.length);
             const regexNombres = new RegExp(`(${nombresClave.join('|')})`, 'gi');
 
