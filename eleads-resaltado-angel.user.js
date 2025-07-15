@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         ELead -Resaltado -Github Version
 // @namespace    http://tampermonkey.net/
-// @version      1.5
+// @version      1.6
 // @description  Resalta palabras claves, nombres en verde, y fechas mayores a 2 meses en historial ELead.
 // @author       Angel Torres
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/history.aspx*
@@ -62,7 +62,7 @@ notifyOnUpdate(); // Ejecuta la detección de versión
     console.log("SCRIPT DE RESALTADO ACTIVADO");
 
     const palabrasClave = ['option', 'options', 'xchange', 'exchange', 'pitch', 'program', 'offer', 'showroom', 'interested', 'interest', 'trade','S2S'];
-    const nombresVerdes = ['JAY', 'KIARA', 'CJ', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'JT', 'MARK A', 'KALY', 'DRI', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
+    const nombresVerdes = ['JAY', 'KIARA', 'CJ', 'CHLOE B', 'BECCA', 'JAZ', 'JJ', 'CHRIS', 'NEA', 'DANI', 'JT', 'MARK A', 'KALY', 'ANIKA', 'JESS', 'CHLOE', 'JUAN', 'JEFF', 'DARIA', 'GABBY', "Neariah" , "Chrissy", "MARIAH", "GAB"];
 
     const regexPalabras = new RegExp(`\\b(${palabrasClave.join('|')})\\b`, 'gi');
     const regexVerdes = new RegExp(`\\b(${nombresVerdes.map(n => n.replace('.', '\\.')).join('|')})\\b`, 'gi');
