@@ -16,22 +16,23 @@
 (function () {
     'use strict';
 
-    const SCRIPT_NAME = 'Drive Centric';
+    const SCRIPT_NAME = "ELead -Resaltado -Github Version";
     const SCRIPT_VERSION = typeof GM_info !== "undefined" ? GM_info.script.version : "unknown";
-    const SCRIPT_DATE = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+    // ✅ Fecha actual con formato descriptivo en español
+    const SCRIPT_DATE = new Date().toLocaleDateString('es-CO', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-(function notifyOnUpdate() {
-    const storageKey = `${SCRIPT_NAME}-LastVersion`;
-    const lastVersion = localStorage.getItem(storageKey);
+    (function notifyOnUpdate() {
+        const storageKey = `${SCRIPT_NAME}-LastVersion`;
+        const lastVersion = localStorage.getItem(storageKey);
 
-    if (lastVersion !== SCRIPT_VERSION) {
-        if (lastVersion !== null) {
-            showToast(`✅ ${SCRIPT_NAME} Updated to Version ${SCRIPT_VERSION}<br>
-            📌📌📌📌${SCRIPT_DATE}📌📌📌📌`);
+        if (lastVersion !== SCRIPT_VERSION) {
+            if (lastVersion !== null) {
+                showToast(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}<br>
+                📌📌📌📌${SCRIPT_DATE}📌📌📌📌`);
+            }
+            localStorage.setItem(storageKey, SCRIPT_VERSION);
         }
-        localStorage.setItem(storageKey, SCRIPT_VERSION);
-    }
-})();
+    })();
 
 // Muestra un pequeño mensaje en la esquina
 function showToast(html) {
