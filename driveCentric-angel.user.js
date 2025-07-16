@@ -27,7 +27,7 @@
     if (lastVersion !== SCRIPT_VERSION) {
         if (lastVersion !== null) {
             showToast(`✅ ${SCRIPT_NAME} Updated to Version ${SCRIPT_VERSION}<br>
-            📌📌📌📌${SCRIPT_DATE}📌📌📌📌`);
+            📌📌${SCRIPT_DATE}📌📌`);
         }
         localStorage.setItem(storageKey, SCRIPT_VERSION);
     }
