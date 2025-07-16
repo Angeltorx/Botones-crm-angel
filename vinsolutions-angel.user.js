@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name         VinSolutions - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      4.6
+// @version      4.8
 // @description  Abre popup 'Log Call', añade iconos de copiado (con estilo mejorado) y resalta palabras clave Y nombres de usuario.
 // @author       Angel Torres
 // @match        *://*.vinsolutions.com/CarDashboard/Pages/CRM/SoldLog.aspx*
@@ -34,7 +34,7 @@
         if (lastVersion !== SCRIPT_VERSION) {
             if (lastVersion !== null) {
                 showToast(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}<br>
-                📌📌📌📌${SCRIPT_DATE}📌📌📌📌`);
+                📌📌${SCRIPT_DATE}📌📌`);
             }
             localStorage.setItem(storageKey, SCRIPT_VERSION);
         }
@@ -61,9 +61,6 @@ function showToast(html) {
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 5000);
 }
-
-notifyOnUpdate(); // Ejecuta la detección de versión
-
 
     const SCRIPT_PREFIX = "VinSolutions Script";
     const currentPath = window.location.pathname;
