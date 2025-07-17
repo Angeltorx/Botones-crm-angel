@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         Drive Centric - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      1.4
-// @description  Añade botones de copia, resalta palabras clave (amarillo) y nombres de usuario (verde).
+// @version      1.5
+// @description  Añade botones de copia, resalta palabras clave (amarillo) y nombres de usuario (verde). NUEVO: Botones de copia en tabla filtrada.
 // @author       Angel Torres
 // @match        https://app.drivecentric.com/*
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=drivecentric.com
@@ -100,10 +100,37 @@ function showToast(message) {
             padding: 1px 3px;
             border-radius: 3px;
         }
+        /* NUEVO: Estilos para botones de copia en tabla filtrada */
+        .copy-table-btn-drc {
+            cursor: pointer;
+            margin-left: 5px;
+            padding: 2px 4px;
+            display: inline-flex;
+            align-items: center;
+            user-select: none;
+            transition: all 0.2s;
+        }
+        .copy-table-btn-drc:hover {
+            transform: scale(1.1);
+        }
+        .copy-table-btn-drc svg {
+            stroke: #007bff;
+        }
+        .copy-table-btn-drc:hover svg {
+            stroke: #0056b3;
+        }
+        .copy-table-btn-drc.copied svg {
+            stroke: #28a745;
+        }
+        .table-phone-container {
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
     `);
 
     // =========================================================================
-    // --- FUNCIONES ---
+    // --- FUNCIONES ORIGINALES (SIN CAMBIOS) ---
     // =========================================================================
 
     function addCopyButton(targetElement, textToCopy, label) {
@@ -187,14 +214,106 @@ function showToast(message) {
         });
     }
 
+    // =========================================================================
+    // --- NUEVA FUNCIONALIDAD: BOTONES DE COPIA EN TABLA FILTRADA ---
+    // =========================================================================
+
+    function addTableCopyButton(cellElement, textToCopy, type) {
+        // Verificar si ya tiene botón de copia
+        if (cellElement.querySelector('.copy-table-btn-drc')) return;
+
+        const cellText = textToCopy.trim();
+
+        // Solo añadir botón si hay contenido válido
+        if (cellText && cellText !== 'N/A' && cellText !== 'Unknown' && cellText.length > 2) {
+            // Crear contenedor
+            const container = document.createElement('span');
+            container.className = 'table-phone-container';
+
+            // Mover el texto original al contenedor
+            container.innerHTML = cellText;
+
+            // Crear botón de copia usando el mismo icono SVG
+            const copyBtn = document.createElement('span');
+            copyBtn.className = 'copy-table-btn-drc';
+            copyBtn.innerHTML = buttonIcon; // Usando el mismo icono SVG
+            copyBtn.title = `Copiar ${type}: ${cellText}`;
+
+            copyBtn.addEventListener('click', function(e) {
+                e.stopPropagation();
+                e.preventDefault();
+
+                navigator.clipboard.writeText(cellText).then(() => {
+                    copyBtn.innerHTML = successIcon;
+                    copyBtn.classList.add('copied');
+                    setTimeout(() => {
+                        copyBtn.innerHTML = buttonIcon;
+                        copyBtn.classList.remove('copied');
+                    }, 1500);
+                }).catch(err => {
+                    try {
+                        GM_setClipboard(cellText, 'text');
+                        copyBtn.innerHTML = successIcon;
+                        copyBtn.classList.add('copied');
+                        setTimeout(() => {
+                            copyBtn.innerHTML = buttonIcon;
+                            copyBtn.classList.remove('copied');
+                        }, 1500);
+                    } catch (gm_err) {
+                        console.error('Error al copiar:', gm_err);
+                    }
+                });
+            });
+
+            container.appendChild(copyBtn);
+
+            // Reemplazar el contenido original
+            cellElement.innerHTML = '';
+            cellElement.appendChild(container);
+        }
+    }
+
+    function addCopyButtonsToFilteredTable() {
+        // Buscar específicamente las celdas de teléfono en la tabla de DriveCentric
+        const phoneCells = document.querySelectorAll('td.mat-column-customerCellPhone span, td.mat-column-customerHomePhone span, td.mat-column-customerPhone span');
+
+        phoneCells.forEach(span => {
+            const phoneText = span.textContent.trim();
+
+            // Solo procesar si contiene un número válido y no es "Unknown"
+            if (phoneText &&
+                phoneText !== 'Unknown' &&
+                phoneText.match(/\(?\d{3}\)?[-.\s]?\d{3}[-.\s]?\d{4}/)) {
+
+                // Buscar el td padre para añadir el botón
+                const parentCell = span.closest('td');
+                if (parentCell) {
+                    addTableCopyButton(parentCell, phoneText, 'Teléfono');
+                }
+            }
+        });
+
+        // También buscar nombres de clientes en la tabla
+        const nameCells = document.querySelectorAll('drc-person-column .person-column__full-name');
+        nameCells.forEach(nameElement => {
+            const nameText = nameElement.textContent.trim();
+            if (nameText && nameText.length > 2) {
+                const parentCell = nameElement.closest('td');
+                if (parentCell) {
+                    addTableCopyButton(parentCell, nameText, 'Nombre');
+                }
+            }
+        });
+    }
 
     // =========================================================================
-    // --- OBSERVADOR UNIFICADO Y EJECUCIÓN ---
+    // --- OBSERVADOR UNIFICADO Y EJECUCIÓN (ACTUALIZADO) ---
     // =========================================================================
     function processPage() {
         addCopyButtons();
         highlightKeywords();
-        highlightUserNames(); // Se añade la nueva función al proceso
+        highlightUserNames();
+        addCopyButtonsToFilteredTable(); // NUEVA FUNCIÓN AÑADIDA
     }
 
     let debounceTimeout;
