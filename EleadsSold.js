@@ -39,19 +39,19 @@
             
             /* Estilos para elementos "sold" */
             .sold-highlight-input { 
-                background-color: #d4edda !important; 
+                background-color: #ff0000ff !important; 
                 border: 2px solid #155724 !important; 
                 color: #155724 !important; 
                 font-weight: bold !important; 
             }
             .sold-highlight-container { 
-                background-color: #d4edda !important; 
+                background-color: #ff0000ff !important; 
                 border: 2px solid #155724 !important; 
                 border-radius: 4px !important; 
                 box-shadow: 0 0 5px rgba(21, 87, 36, 0.3) !important; 
             }
             .sold-row-highlight {
-                background-color: #e8f5e8 !important;
+                background-color: #ff0000ff !important;
                 border-left: 4px solid #155724 !important;
             }
             

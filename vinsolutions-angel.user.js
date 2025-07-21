@@ -24,20 +24,20 @@
 
     const SCRIPT_NAME = "VinSolutions - Github Version";
     const SCRIPT_VERSION = typeof GM_info !== "undefined" ? GM_info.script.version : "unknown";
+    const SCRIPT_DATE = new Date().toLocaleDateString('en-US', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-// Mostrar notificación si se actualiza el script
-function notifyOnUpdate() {
+(function notifyOnUpdate() {
     const storageKey = `${SCRIPT_NAME}-LastVersion`;
     const lastVersion = localStorage.getItem(storageKey);
 
     if (lastVersion !== SCRIPT_VERSION) {
         if (lastVersion !== null) {
-            showToast(`✅ ${SCRIPT_NAME} actualizado a la versión ${SCRIPT_VERSION}<br>
-            📌 Se mejoró el botón de copiado con ícono SVG.`);
+            showToast(`✅ ${SCRIPT_NAME} Updated to Version ${SCRIPT_VERSION}<br>
+            📌📌${SCRIPT_DATE}📌📌`);
         }
         localStorage.setItem(storageKey, SCRIPT_VERSION);
     }
-}
+})();
 
 // Muestra un pequeño mensaje en la esquina
 function showToast(html) {
@@ -60,9 +60,6 @@ function showToast(html) {
     document.body.appendChild(toast);
     setTimeout(() => toast.remove(), 5000);
 }
-
-notifyOnUpdate(); // Ejecuta la detección de versión
-
 
     const SCRIPT_PREFIX = "VinSolutions Script";
     const currentPath = window.location.pathname;
