@@ -51,7 +51,7 @@
         /* Indicador de estado específico para desklog */
         .desklog-status-indicator {
             position: fixed;
-            top: 10px;
+            top: 50px;
             right: 10px;
             background: #28a745;
             color: white;
@@ -75,7 +75,7 @@
         /* Botón manual para desklog */
         .desklog-manual-btn {
             position: fixed;
-            top: 50px;
+            top: 100px;
             right: 10px;
             background: #007bff;
             color: white;
