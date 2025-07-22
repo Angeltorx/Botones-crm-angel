@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         ELead -Desklog Resaltado
+// @name         ELead -Desklog Github Version
 // @namespace    http://tampermonkey.net/
 // @version      1.0
 // @description  Resalta elementos "sold" en la página de desklog y selecciona automáticamente Status
