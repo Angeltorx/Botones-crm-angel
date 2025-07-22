@@ -49,14 +49,19 @@
         }
 
         img {
-            border-radius: 50px;
+            border-radius: 10px;
             max-width: 100px;
             max-height: 75px;
+            justify-content: right;
+            max-height: 45px;
         }
 
         .btn {
+            display: flex;
+            min-height: 50px;
             min-width: 350px;
-            justify-content: left;
+            max-width: 450px;
+            justify-content: space-between;
         }
     </style>
 </head>
@@ -68,39 +73,61 @@
     <div class="container mt-3">
         <h3 class="text-danger">Recuerda cambiar las versiones cada vez que actualices un script</h3>
     </div>
-    <div class="container mt-3">
-        <p>Haz clic en cada botón para instalar los scripts directamente desde GitHub. <br>Click on each button to install the scripts directly from GitHub.</p>
-    </div>
+    <div class="container d-flex gap-3">
+        <div class="container mt-3">
+            <div class="mt-3">
+                <p>💡 Haz clic en cada botón para instalar los scripts directamente desde GitHub. <br>💡 Click on each
+                    button
+                    to
+                    install the scripts directly from GitHub.</p>
+            </div>
+            <div class="mt-3"><a href="https://www.tampermonkey.net/index.php?locale=es" target="_blank">Install
+                    Tampermonkey</a></div>
+            <div class="mt-3">
+                <p>💡 Al hacer clic en cada enlace, Tampermonkey te pedirá confirmar la instalación. <br>💡 When you
+                    click on each link, Tampermonkey will ask you to confirm the installation..</p>
+            </div>
+        </div>
+        <div class="container mt-3">
+            <ul>
+                <li><a class="btn btn-primary"
+                        href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js"
+                        target="_blank"><img
+                            src="https://th.bing.com/th/id/OIP.YNpZ33JN-Sdyl_lmxMVvwwHaD4?rs=1&pid=ImgDetMain&cb=idpwebpc2"
+                            alt="Elead Logo">
+                        <h2> #1 ❏ Buttons</h2>
+                    </a></li>
+                <li><a class="btn btn-success"
+                        href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js"
+                        target="_blank"><img
+                            src="https://th.bing.com/th/id/OIP.YNpZ33JN-Sdyl_lmxMVvwwHaD4?rs=1&pid=ImgDetMain&cb=idpwebpc2"
+                            alt="Elead Logo">
+                        <h2>#2 🔎 Search</h2>
+                    </a></li>
+                <li><a class="btn btn-warning"
+                        href="https://raw.github.com/Angeltorx/Botones-crm-angel/main/eleads_desklog-angel.user.js"
+                        target="_blank"><img
+                            src="https://th.bing.com/th/id/OIP.YNpZ33JN-Sdyl_lmxMVvwwHaD4?rs=1&pid=ImgDetMain&cb=idpwebpc2"
+                            alt="Elead Logo">
+                        <h2> #3 📌 Sold</h2>
+                    </a></li>
+                <li><a class="btn btn-danger"
+                        href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/vinsolutions-angel.user.js"
+                        target="_blank"> <img
+                            src="https://www.logosvgpng.com/wp-content/uploads/2018/03/vinsolutions-logo-vector.png"
+                            alt="Vinsolution">
+                        <h2> 🔗 VinSolutions ~ All</h2>
+                    </a></li>
+                <li><a class="btn btn-info"
+                        href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js"
+                        target="_blank"><img
+                            src="https://th.bing.com/th/id/OIP.yoHGjUo3YJScG-EJ2ylKDwHaBQ?w=345&h=61&c=7&r=0&o=7&pid=1.7&rm=3"
+                            alt="Drive Centric">
+                        <h2> 🔗 Drive Centric ~ All</h2>
+                    </a></li>
+            </ul>
+        </div>
 
-    <div class="container"><a href="https://www.tampermonkey.net/index.php?locale=es" target="_blank">Install Tampermonkey</a></div>
-
-    <div class="container  mt-5">
-        <ul>
-            <li><a class="btn btn-warning"
-                    href="https://raw.github.com/Angeltorx/Botones-crm-angel/main/eleads_desklog-angel.user.js"
-                    target="_blank"><img
-                        src="https://th.bing.com/th/id/OIP.YNpZ33JN-Sdyl_lmxMVvwwHaD4?rs=1&pid=ImgDetMain&cb=idpwebpc2"
-                        alt="Elead Logo"> ELEAD #1- Desklog</a></li>
-            <li><a class="btn btn-success"
-                    href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js"
-                    target="_blank"><img
-                        src="https://th.bing.com/th/id/OIP.YNpZ33JN-Sdyl_lmxMVvwwHaD4?rs=1&pid=ImgDetMain&cb=idpwebpc2"
-                        alt="Elead Logo"> ELEAD #2- Resaltado</a></li>
-            <li><a class="btn btn-primary"
-                    href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-botones-angel.user.js"
-                    target="_blank"><img
-                        src="https://th.bing.com/th/id/OIP.YNpZ33JN-Sdyl_lmxMVvwwHaD4?rs=1&pid=ImgDetMain&cb=idpwebpc2"
-                        alt="Elead Logo"> ELEAD #3- Botones</a></li>
-            <li><a class="btn btn-dark"
-                    href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/vinsolutions-angel.user.js"
-                    target="_blank"> <img src="https://www.logosvgpng.com/wp-content/uploads/2018/03/vinsolutions-logo-vector.png" alt=""> - VinSolutions</a></li>
-            <li><a class="btn btn-info" href="https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/driveCentric-angel.user.js"
-                    target="_blank"><img src="https://th.bing.com/th/id/OIP.yoHGjUo3YJScG-EJ2ylKDwHaBQ?w=345&h=61&c=7&r=0&o=7&pid=1.7&rm=3" alt=""> ⚙️ Drive Centric</a></li>
-        </ul>
-    </div>
-    <div class="container mt-5">
-        <p>💡 Al hacer clic en cada enlace, Tampermonkey te pedirá confirmar la instalación.</p>
-        <p>💡 When you click on each link, Tampermonkey will ask you to confirm the installation..</p>
     </div>
 </body>
 
