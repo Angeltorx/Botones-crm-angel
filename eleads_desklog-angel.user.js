@@ -10,8 +10,8 @@
 // @grant        GM_addStyle
 // @grant        GM_setClipboard
 // @run-at       document-idle
-// @updateURL    https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js
-// @downloadURL  https://raw.githubusercontent.com/Angeltorx/Botones-crm-angel/main/eleads-resaltado-angel.user.js
+// @updateURL    https://raw.github.com/Angeltorx/Botones-crm-angel/main/eleads_desklog-angel.user.js
+// @downloadURL  https://raw.github.com/Angeltorx/Botones-crm-angel/main/eleads_desklog-angel.user.js
 // ==/UserScript==
 
 (function () {
