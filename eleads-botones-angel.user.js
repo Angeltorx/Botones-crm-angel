@@ -116,7 +116,7 @@
     const marker = document.createElement("span");
     marker.className = duplicateButtonClass;
     marker.innerHTML = duplicateIcon;
-    marker.title = `❌ Duplicate number – Already available as: ${originalInfo.type}: ${originalInfo.number}`;
+    marker.title = `❌ Duplicate # – Available as: ${originalInfo.type}: ${originalInfo.number}`;
 
     try {
       if (targetElement.nodeType === Node.TEXT_NODE) {
