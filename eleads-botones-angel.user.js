@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         ELead -Buttons - Github Version
 // @namespace    http://tampermonkey.net/
-// @version      1.2
-// @description  Combina botones de copiado (v11) con expansión del historial (v17) y auto-expansión de números ocultos mejorada.
+// @version      1.3
+// @description  Combina botones de copiado (v11) con expansión del historial (v17), auto-expansión de números ocultos y detección de duplicados.
 // @author       Jesus Is lord
 // @match        https://*.eleadcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/OpptyDetails.aspx*
 // @match        https://*.forddirectcrm.com/evo2/fresh/elead-v45/elead_track/NewProspects/OpptyDetails.aspx*
@@ -18,7 +18,7 @@
 
 (function () {
   "use strict";
-  console.log("SCRIPT INICIADO v1.2 (Botones + Historial + Auto-expansión mejorada)");
+  console.log("SCRIPT INICIADO v1.3 (Botones + Historial + Auto-expansión + Detección duplicados)");
 
   // --- Configuration ---
   const buttonIcon = `
@@ -28,10 +28,15 @@
 </svg>`;
 
   const successIcon = `<span style="color:green; font-weight:bold;">✔</span>`;
+  const duplicateIcon = `<span style="color:black; font-weight:bold; font-size:14px;">✖</span>`;
 
   const copyButtonClass = "copy-data-btn";
+  const duplicateButtonClass = "duplicate-data-btn";
   const copyButtonMarker = "hasCopyButton";
   let initialRunComplete = false;
+
+  // NUEVO: Array para rastrear números ya procesados
+  let processedNumbers = [];
 
   const dataFields = [
     {
@@ -57,9 +62,22 @@
     GM_addStyle(`
             .${copyButtonClass} { cursor: pointer; margin-left: 5px; display: inline-block; font-size: 0.9em; user-select: none; vertical-align: middle; }
             .${copyButtonClass}:hover { opacity: 0.7; }
+
+            /* NUEVO: Estilos para botones de duplicados */
+            .${duplicateButtonClass} {
+                cursor: help;
+                margin-left: 5px;
+                display: inline-block;
+                font-size: 0.9em;
+                user-select: none;
+                vertical-align: middle;
+                opacity: 0.7;
+            }
+            .${duplicateButtonClass}:hover { opacity: 1; }
+
             #CustomerInfoPanel_NameLink + td, #CustomerInfoPanel_HPhoneLink + td,
             #CustomerInfoPanel_CPhoneLink + td, #CustomerInfoPanel_WPhoneLink + td { position: relative; }
-            
+
             /* Estilos para auto-expansión mejorados */
             .auto-expanded { opacity: 0.5; pointer-events: none; }
             .phone-expanded-marker { color: #28a745; font-size: 10px; margin-left: 3px; }
@@ -69,6 +87,54 @@
     console.error("SCRIPT ERROR: Fallo GM_addStyle.", e);
   }
 
+  // NUEVA FUNCIÓN: Limpiar formato de número para comparación
+  function cleanPhoneNumber(phoneNumber) {
+    return phoneNumber.replace(/[\s\-\(\)]/g, '');
+  }
+
+  // NUEVA FUNCIÓN: Verificar si es número duplicado
+  function isDuplicateNumber(phoneNumber) {
+    const cleanNumber = cleanPhoneNumber(phoneNumber);
+    return processedNumbers.some(item => cleanPhoneNumber(item.number) === cleanNumber);
+  }
+
+  // NUEVA FUNCIÓN: Obtener información del número original
+  function getOriginalNumberInfo(phoneNumber) {
+    const cleanNumber = cleanPhoneNumber(phoneNumber);
+    return processedNumbers.find(item => cleanPhoneNumber(item.number) === cleanNumber);
+  }
+
+  // NUEVA FUNCIÓN: Añadir marcador de duplicado
+  function addDuplicateMarker(targetElement, phoneNumber, originalInfo) {
+    const markerElement =
+      targetElement?.nodeType === Node.ELEMENT_NODE
+        ? targetElement
+        : targetElement?.parentElement;
+    if (!markerElement || markerElement.dataset[copyButtonMarker] === "true")
+      return false;
+
+    const marker = document.createElement("span");
+    marker.className = duplicateButtonClass;
+    marker.innerHTML = duplicateIcon;
+    marker.title = `❌ Duplicate number – Already available as: ${originalInfo.type}: ${originalInfo.number}`;
+
+    try {
+      if (targetElement.nodeType === Node.TEXT_NODE) {
+        const span = document.createElement("span");
+        span.textContent = targetElement.textContent;
+        targetElement.parentNode.replaceChild(span, targetElement);
+        targetElement = span;
+      }
+      targetElement.parentNode.insertBefore(marker, targetElement.nextSibling);
+      markerElement.dataset[copyButtonMarker] = "true";
+      console.log(`❌ Número duplicado marcado: ${phoneNumber} (original: ${originalInfo.type})`);
+      return true;
+    } catch (error) {
+      console.error(`SCRIPT ERROR: Error al insertar marcador duplicado`, error);
+      return false;
+    }
+  }
+
   function addCopyButton(targetElement, textToCopy, label) {
     const markerElement =
       targetElement?.nodeType === Node.ELEMENT_NODE
@@ -76,6 +142,23 @@
         : targetElement?.parentElement;
     if (!markerElement || markerElement.dataset[copyButtonMarker] === "true")
       return false;
+
+    // NUEVO: Verificar si es número duplicado
+    if (label.includes("Teléfono")) {
+      const isDuplicate = isDuplicateNumber(textToCopy);
+
+      if (isDuplicate) {
+        const originalInfo = getOriginalNumberInfo(textToCopy);
+        return addDuplicateMarker(targetElement, textToCopy, originalInfo);
+      } else {
+        // Registrar número como procesado
+        processedNumbers.push({
+          number: textToCopy,
+          type: label
+        });
+        console.log(`📱 Número registrado: ${textToCopy} como ${label}`);
+      }
+    }
 
     const btn = document.createElement("span");
     btn.className = copyButtonClass;
@@ -123,83 +206,72 @@
 
   function clearPreviousButtons(container) {
     container
-      .querySelectorAll(`.${copyButtonClass}`)
+      .querySelectorAll(`.${copyButtonClass}, .${duplicateButtonClass}`)
       .forEach((btn) => btn.remove());
     container
       .querySelectorAll(`[data-${copyButtonMarker}]`)
       .forEach((el) => delete el.dataset[copyButtonMarker]);
+
+    // NUEVO: Limpiar array de números procesados
+    processedNumbers = [];
+    console.log("🧹 Números procesados limpiados");
   }
 
-  // --- FUNCIONALIDAD MEJORADA: AUTO-EXPANSIÓN DE NÚMEROS OCULTOS ---
+  // --- FUNCIONALIDAD AUTO-EXPANSIÓN DE NÚMEROS OCULTOS (sin cambios) ---
   function autoExpandHiddenNumbers() {
     console.log("🔍 Buscando números ocultos para expandir...");
-    
-    // Buscar SOLO iconos "+" (collapsed) que NO hayan sido procesados
+
     const plusIcons = document.querySelectorAll('img.iconClass[src*="plus_small.gif"]:not([data-auto-expanded])');
-    
+
     let expandedCount = 0;
-    
+
     plusIcons.forEach((icon, index) => {
       try {
-        // Marcar como procesado inmediatamente para evitar clicks repetidos
         icon.dataset.autoExpanded = "true";
-        
         console.log(`🔄 Procesando icono "+" ${index + 1}...`);
-        
-        // Encontrar el enlace padre del icono
+
         const linkParent = icon.closest('a');
         if (linkParent) {
-          
-          // Añadir indicador visual temporal
           icon.classList.add('expansion-processing');
-          
-          // Simular clic humano en el enlace
           console.log(`✅ Haciendo clic para expandir número ${index + 1}`);
           linkParent.click();
-          
           expandedCount++;
-          
-          // Marcar como expandido después de un delay
+
           setTimeout(() => {
             icon.classList.remove('expansion-processing');
             icon.classList.add('auto-expanded');
-            
-            // Verificar si el icono cambió a "minus"
+
             const currentIcon = document.querySelector(`img.iconClass[src*="minus_small.gif"][data-auto-expanded="true"]`);
             if (currentIcon) {
               console.log(`✅ Expansión confirmada para número ${index + 1}`);
-              
-              // Añadir marcador visual de éxito
+
               const expandedMarker = document.createElement('span');
               expandedMarker.className = 'phone-expanded-marker';
               expandedMarker.textContent = '🔓';
               expandedMarker.title = 'Número expandido automáticamente';
-              
-              // Insertar el marcador después del icono minus
+
               if (currentIcon.parentNode) {
                 currentIcon.parentNode.insertBefore(expandedMarker, currentIcon.nextSibling);
               }
             }
           }, 500);
-          
+
         } else {
           console.warn(`⚠️ No se encontró enlace padre para el icono ${index + 1}`);
         }
-        
+
       } catch (error) {
         console.error(`❌ Error expandiendo número oculto ${index + 1}:`, error);
       }
     });
-    
-    // Si se expandieron números, re-procesar después de un delay apropiado
+
     if (expandedCount > 0) {
       console.log(`📱 ${expandedCount} números ocultos expandidos automáticamente`);
-      
-      // Re-procesar los campos de datos después de la expansión
+
       setTimeout(() => {
         console.log("🔄 Re-procesando campos después de la expansión...");
         processDataFields();
-      }, 1500); // Delay mayor para asegurar que el DOM se actualice
+      }, 1500);
     } else {
       console.log("ℹ️ No se encontraron números ocultos para expandir");
     }
@@ -211,10 +283,9 @@
 
     if (!initialRunComplete) {
       clearPreviousButtons(container);
-      
-      // Expandir números ocultos solo en la primera ejecución
+
       setTimeout(autoExpandHiddenNumbers, 500);
-      
+
       initialRunComplete = true;
     }
 
@@ -239,22 +310,19 @@
         ) {
         }
       } else {
-        // Procesar números de teléfono (incluyendo los recién expandidos)
         const phoneRows = dataCell.querySelectorAll("table tr");
         if (phoneRows.length > 0) {
           phoneRows.forEach((row, rowIndex) => {
-            // Procesar TODAS las filas visibles (incluyendo las expandidas)
-            const isVisible = row.style.display !== "none" && 
-                            row.style.display !== "" || 
+            const isVisible = row.style.display !== "none" &&
+                            row.style.display !== "" ||
                             row.style.display === "table-row";
-            
+
             if (isVisible || row.offsetParent !== null) {
               const phoneLink = row.querySelector("td:first-child a");
               const tableCell = row.querySelector("td:first-child");
               const numberElement = phoneLink || tableCell;
               const textToCopy = numberElement?.textContent?.trim();
-              
-              // Validar que sea un número de teléfono válido
+
               if (textToCopy && textToCopy.match(/^\(\d{3}\)\s?\d{3}-\d{4}$/)) {
                 console.log(`📞 Procesando teléfono en fila ${rowIndex + 1}: ${textToCopy}`);
                 addCopyButton(numberElement, textToCopy, field.label);
@@ -303,8 +371,7 @@
       }
     });
     observer.observe(targetNode, config);
-    
-    // Delay inicial para permitir carga completa
+
     setTimeout(runProcessor, 1200);
   }
 
