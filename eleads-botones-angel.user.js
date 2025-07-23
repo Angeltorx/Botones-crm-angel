@@ -28,7 +28,7 @@
 </svg>`;
 
   const successIcon = `<span style="color:green; font-weight:bold;">✔</span>`;
-  const duplicateIcon = `<span style="color:black; font-weight:bold; font-size:14px;">✖</span>`;
+  const duplicateIcon = `<span style="color:red; font-weight:bold; font-size:14px;">✖</span>`;
 
   const copyButtonClass = "copy-data-btn";
   const duplicateButtonClass = "duplicate-data-btn";
